@@ -10,6 +10,7 @@ public class Matrice {
 	
 	
 	public Matrice (int m, int n) {
+		
 		this.m = m;
 		this.n = n;
 		matrice = new int[m][n];
@@ -19,10 +20,12 @@ public class Matrice {
 	
 	public void setValue() {
 		System.out.print("Mettez les valeurs par lignes ! ");
-		for (int i=0; i<m; i++) {
-			System.out.print("Insérez un chiffre : ");
-			value = scan.nextInt();
-			matrice[0][i] = value;
+		for (int i=0; i<n; i++) {
+			for (int j=0; j<m; j++) {
+				System.out.print("InsÃ©rez un chiffre : ");
+				value = scan.nextInt();
+				matrice[i][j] = value;
+			}
 		}
 		
 		// afficher le contenu du tableau matrice
@@ -31,7 +34,7 @@ public class Matrice {
 			for (int value : sousTab) {
 				System.out.print(value);
 			}
-			
+			System.out.println("");
 		}
 		
 		

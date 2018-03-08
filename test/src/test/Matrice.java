@@ -20,7 +20,7 @@ public class Matrice {
 	
 	
 	public void setValue() {
-		System.out.print("Mettez les valeurs par lignes ! ");
+		System.out.println("Mettez les valeurs par lignes ! ");
 		for (int i=0; i<n; i++) {
 			for (int j=0; j<m; j++) {
 				System.out.print("Insérez un chiffre : ");
@@ -58,6 +58,13 @@ public class Matrice {
 			}
 			System.out.println("|");
 		}	
+		
+	}
+	
+	
+	public void multiplier () {
+		
+		
 		
 	}
 	

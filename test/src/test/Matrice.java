@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Matrice {
 	
 	int m, n, value; // m = nbre de lignes et n = nbre de colonnes
-	int[][] matrice, inverse;
+	int[][] matrice, inverse, matriceMultipliee;
 	Scanner scan = new Scanner(System.in);
 	
 	
@@ -66,10 +66,32 @@ public class Matrice {
 	
 	public void multiplier () {
 		
+		System.out.println("Saisissez une valeur qui va multiplier la matrice");
+		for (int i=0; i<m; i++) {
+			for (int j=0; j<n; j++) {
+				int multiplicateur = scan.nextInt();
+				matriceMultipliee[i][j] = matrice[i][j]*multiplicateur;
+			}
+			
+		}
 		
-		
+		this.showValues();
 	}
+		
 	
-	
+	//public void setValue() {
+		//System.out.println("Mettez les valeurs par lignes ! ");
+		//for (int i=0; i<m; i++) {
+			//for (int j=0; j<n; j++) {
+				//System.out.print("Insérez un chiffre : ");
+				//value = scan.nextInt();
+				//matrice[i][j] = value;
+				
+			//}
+		//}
+		
+		//this.showValues();
+		
+	//}
 	
 }

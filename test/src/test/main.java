@@ -10,9 +10,9 @@ public class main {
 	
 	public static void main(String[] args) {
 		//Fenetre f = new Fenetre();
-		System.out.println("Combien de ligne y a-t-il dans la matrice ? ");
+		System.out.println("Combien de ligne(s) y a-t-il dans la matrice ? ");
 		nbreligne = scan.nextInt();
-		System.out.println("Combien de colonne y a-t-il dans la matrice ? ");
+		System.out.println("Combien de colonne(s) y a-t-il dans la matrice ? ");
 		nbrecolonne = scan.nextInt();
 		
 		Matrice matrice = new Matrice(nbreligne,nbrecolonne);

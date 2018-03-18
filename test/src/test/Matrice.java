@@ -27,7 +27,9 @@ public class Matrice {
 				matriceMultipliee.matrice[i][j] = value;
 			}
 		}
-		
+		System.out.println("Matrice de base : ");
+		this.showValues();
+		System.out.println("Multipliée par : "+multiplicateur);
 		matriceMultipliee.showValues();
 		
 	}

@@ -18,7 +18,20 @@ public class Matrice {
 		
 	}
 	
-
+	public void multiplierParInt(int multiplicateur) {
+		
+		Matrice matriceMultipliee = new Matrice(this.m,this.n);
+		for (int i=0; i<m; i++) {
+			for (int j=0; j<n; j++) {
+				value = this.matrice[i][j]*multiplicateur;
+				matriceMultipliee.matrice[i][j] = value;
+			}
+		}
+		
+		matriceMultipliee.showValues();
+		
+	}
+	
 		
 	
 	public void setValue() {

@@ -17,10 +17,19 @@ public class main {
 		int nbrecolonne = scan.nextInt();
 		
 		Matrice matrice = new Matrice(nbreligne,nbrecolonne);
-		matrice.setValue();
 		
 		//vide la ligne de System.in
 		scan.nextLine();
+		System.out.println("Voulez-vous mettre des valeurs ? (O/N)");
+				 
+		reponse = scan.nextLine().charAt(0);
+				
+		if (reponse == 'O' || reponse == 'o') {
+			matrice.setValue();
+		} else {
+			matrice.valeurParDefaut();
+		}
+		
 		System.out.println("Voulez-vous voir la matrice inverse ? (O/N)");
 		 
 		reponse = scan.nextLine().charAt(0);
@@ -29,8 +38,6 @@ public class main {
 			matrice.showInverse();
 		}
 		
-		//vide la ligne de System.in
-		//scan.nextLine();
 		System.out.println("Voulez-vous multiplier la matrice par un int ? (O/N)");
 		 
 		reponse = scan.nextLine().charAt(0);

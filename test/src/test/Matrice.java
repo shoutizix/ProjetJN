@@ -46,6 +46,15 @@ public class Matrice {
 	}
 	
 		
+	public void valeurParDefaut() {
+		//Rempli la matrice de 1
+		for (int i=0; i<m; i++) {
+			for (int j=0; j<n; j++) {
+				matrice[i][j] = 1;		
+			}
+		}
+	}
+	
 	
 	public void setValue() {
 		System.out.println("Mettez les valeurs par lignes ! ");

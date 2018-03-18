@@ -6,7 +6,9 @@ public class main {
 	
 	static int nbreligne;
 	static int nbrecolonne;
+	public static int multiplicateur;
 	static Scanner scan = new Scanner(System.in);
+	static String reponse;
 	
 	public static void main(String[] args) {
 		//Fenetre f = new Fenetre();
@@ -18,11 +20,19 @@ public class main {
 		Matrice matrice = new Matrice(nbreligne,nbrecolonne);
 		matrice.setValue();
 		
-		//System.out.println("Insérez un int qui va multiplier la matrice");
-		//multiplicateur = scan.nextInt();
+		/**System.out.println("Voulez-vous multiplier la matrice par un int ? (O/N)");
+		 * 
+		 * reponse = scan.nextString.charAt{0};
 		
-		//MatriceMultipliee matrice2 = new MatriceMultipliee();
-		//matrice2.setValue();
+		if (reponse == "O") {
+			MatriceMultipliee matrice2 = new MatriceMultipliee();
+			matrice2.setValue();
+		}
+		
+		else
+			System.out.println("Au revoir !");**/
+		
+		
 	}
 
 }

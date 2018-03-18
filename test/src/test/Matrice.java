@@ -18,6 +18,23 @@ public class Matrice {
 		
 	}
 	
+	public void multiplierParInt(int multiplicateur) {
+		
+		Matrice matriceMultipliee = new Matrice(this.m,this.n);
+		for (int i=0; i<m; i++) {
+			for (int j=0; j<n; j++) {
+				value = this.matrice[i][j]*multiplicateur;
+				matriceMultipliee.matrice[i][j] = value;
+			}
+		}
+		System.out.println("Matrice de base : ");
+		this.showValues();
+		System.out.println("Multipliée par : "+multiplicateur);
+		matriceMultipliee.showValues();
+		
+	}
+	
+		
 	
 	public void setValue() {
 		System.out.println("Mettez les valeurs par lignes ! ");
@@ -35,7 +52,7 @@ public class Matrice {
 	}
 	
 	public void showValues() {
-		// afficher le contenu du tableau matrice
+		 //afficher le contenu du tableau matrice
 
 		for (int sousTab[] : matrice) { 
 			System.out.print("|");
@@ -47,7 +64,9 @@ public class Matrice {
 		
 	}
 	
-	public void calculerInverse () {
+		
+	
+public void calculerInverse () {
 		
 		for (int sousTab[] : inverse) {
 			
@@ -62,14 +81,5 @@ public class Matrice {
 		}	
 		
 	}
-	
-	
-	public void multiplier () {
-		
-		
-		
-	}
-	
-	
 	
 }

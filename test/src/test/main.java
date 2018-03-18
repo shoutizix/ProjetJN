@@ -17,6 +17,12 @@ public class main {
 		
 		Matrice matrice = new Matrice(nbreligne,nbrecolonne);
 		matrice.setValue();
+		
+		//System.out.println("Insérez un int qui va multiplier la matrice");
+		//multiplicateur = scan.nextInt();
+		
+		//MatriceMultipliee matrice2 = new MatriceMultipliee();
+		//matrice2.setValue();
 	}
 
 }

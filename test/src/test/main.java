@@ -7,6 +7,8 @@ public class main {
 	static int multiplicateur;
 	static Scanner scan = new Scanner(System.in);
 	static char reponse = ' ';
+	
+	
 	public static void main(String[] args) {
 		//Fenetre f = new Fenetre();
 		System.out.println("Combien de ligne(s) y a-t-il dans la matrice ? ");
@@ -15,12 +17,30 @@ public class main {
 		int nbrecolonne = scan.nextInt();
 		
 		Matrice matrice = new Matrice(nbreligne,nbrecolonne);
-		matrice.setValue();
+		
 		//vide la ligne de System.in
 		scan.nextLine();
+		System.out.println("Voulez-vous mettre des valeurs ? (O/N)");
+				 
+		reponse = scan.nextLine().charAt(0);
+				
+		if (reponse == 'O' || reponse == 'o') {
+			matrice.setValue();
+		} else {
+			matrice.valeurParDefaut();
+		}
+		
+		System.out.println("Voulez-vous voir la matrice inverse ? (O/N)");
+		 
+		reponse = scan.nextLine().charAt(0);
+		
+		if (reponse == 'O' || reponse == 'o') {
+			matrice.showInverse();
+		}
+		
 		System.out.println("Voulez-vous multiplier la matrice par un int ? (O/N)");
 		 
-		char reponse = scan.nextLine().charAt(0);
+		reponse = scan.nextLine().charAt(0);
 		
 		if (reponse == 'O' || reponse == 'o') {
 			System.out.println("Par quelle valeur voulez-vous multiplier la matrice ?");
@@ -31,6 +51,7 @@ public class main {
 		else {
 			System.out.println("Au revoir !");
 		}
+
 		
 	}
 

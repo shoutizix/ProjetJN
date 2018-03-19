@@ -33,9 +33,9 @@ public class MatriceInverse {
 		 //afficher le contenu du tableau matrice
 
 		for (int sousTab[] : matrice) { 
-			System.out.print("|");
+			System.out.print("| ");
 			for (int value : sousTab) {
-				System.out.print(value);
+				System.out.print(value+" ");
 			}
 			System.out.println("|");
 		}	

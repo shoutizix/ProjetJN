@@ -4,15 +4,11 @@ import java.util.Scanner;
 
 public class Matrice {
 	
-	int m, n, value; // m = nbre de lignes et n = nbre de colonnes
+	int m, n, value, determinant; // m = nbre de lignes et n = nbre de colonnes
 	int[][] matrice;
 	private boolean inverseExiste = false;
 	MatriceInverse inverse;
 	Scanner scan = new Scanner(System.in);
-	
-	public Matrice() {
-		
-	}
 	
 	public Matrice (int m, int n) {
 		
@@ -75,9 +71,9 @@ public class Matrice {
 		 //afficher le contenu du tableau matrice
 
 		for (int sousTab[] : matrice) { 
-			System.out.print("|");
+			System.out.print("| ");
 			for (int value : sousTab) {
-				System.out.print(value);
+				System.out.print(value+" ");
 			}
 			System.out.println("|");
 		}	
@@ -114,5 +110,7 @@ public void showInverse() {
 	
 	
 	}
-	
+
+
+
 }

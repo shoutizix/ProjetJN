@@ -36,7 +36,30 @@ public class Matrice {
 		}
 		System.out.println("Matrice de base : ");
 		this.showValues();
-		System.out.println("Multipliée par : "+multiplicateur);
+		System.out.println("Multipliï¿½e par : "+multiplicateur);
+		matriceMultipliee.showValues();
+		
+	}
+	
+public void multiplierParMatrice(Matrice matrice2) {
+	int v =0;
+		Matrice matriceMultipliee = new Matrice(this.m,matrice2.n);
+		for (int i=0; i<m; i++) {
+			for (int j=0; j<matrice2.n; j++) {
+				
+				for (int x=0;x<n;x++) {
+					v+=matrice[i][x]*matrice2.matrice[x][j];
+				}
+				
+				matriceMultipliee.matrice[i][j]=v;
+				v=0;
+			}
+		}
+		System.out.println("Matrice de base : ");
+		this.showValues();
+		System.out.println("Multipliï¿½e par : ");
+		matrice2.showValues();
+		System.out.println("Correspond à : ");
 		matriceMultipliee.showValues();
 		
 	}
@@ -105,7 +128,7 @@ public void showInverse() {
 	if (inverseExiste) {
 		inverse.showValues();
 	} else {
-		System.out.println("La matrice n'est pas carrée ! ");
+		System.out.println("La matrice n'est pas carrï¿½e ! ");
 	}
 	
 	

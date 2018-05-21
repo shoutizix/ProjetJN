@@ -39,7 +39,7 @@ public class TestSwingMatrice extends JFrame {
 		});
 		
 		int nbreligne, nbrecolonne;
-		Matrice matrice = new Matrice(nbreligne, nbrecolonne);
+		//Matrice matrice = new Matrice(nbreligne, nbrecolonne);
 	}
 
 	/**
@@ -75,9 +75,9 @@ public class TestSwingMatrice extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JButton source = (JButton)e.getSource();
 				if (source == btnOui) {
-					matrice.setValue();
+					//matrice.setValue();
 				} else {
-					matrice.valeurParDefaut();
+					//matrice.valeurParDefaut();
 		}
 			}
 		});

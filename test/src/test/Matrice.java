@@ -11,7 +11,6 @@ public class Matrice {
 	int m, n; 
 	double value; // m = nbre de lignes et n = nbre de colonnes
 	double[][] matrice;
-	private boolean inverseExiste = false;
 	Scanner scan = new Scanner(System.in);
 	
 	public Matrice (int m, int n) {

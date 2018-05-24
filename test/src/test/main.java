@@ -10,8 +10,7 @@ public class main {
 	
 	
 	public static void main(String[] args) {
-		//Fenetre f = new Fenetre();
-		/**System.out.println("Combien de ligne(s) y a-t-il dans la matrice ? ");
+		System.out.println("Combien de ligne(s) y a-t-il dans la matrice ? ");
 		int nbreligne = scan.nextInt();
 		System.out.println("Combien de colonne(s) y a-t-il dans la matrice ? ");
 		int nbrecolonne = scan.nextInt();
@@ -58,7 +57,7 @@ public class main {
 		reponse = scan.nextLine().charAt(0);
 		
 		if (reponse == 'O' || reponse == 'o') {
-			matrice.showInverse();
+			matrice.calculerInverse();
 		}
 		
 		System.out.println("Voulez-vous multiplier la matrice par un int ? (O/N)");
@@ -74,14 +73,14 @@ public class main {
 		else {
 			System.out.println("Au revoir !");
 		}
-**/
+/**
 		System.out.println("Combien y a-t-il de x ?");
 		int nbreX = scan.nextInt();
 		System.out.println("Combien y a-t-il de contraintes ?");
 		int nbreContraintes = scan.nextInt();
 		AlgoSimplex lol = new AlgoSimplex(nbreContraintes, nbreX);
 		lol.showStandardForm();
-		
+		**/
 	}
 
 }

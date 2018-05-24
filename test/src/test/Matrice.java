@@ -2,10 +2,15 @@ package test;
 
 import java.util.Scanner;
 
+import org.apache.commons.math3.linear.LUDecomposition;
+import org.apache.commons.math3.linear.MatrixUtils;
+import org.apache.commons.math3.linear.RealMatrix;
+
 public class Matrice {
 	
-	int m, n, value; // m = nbre de lignes et n = nbre de colonnes
-	int[][] matrice;
+	int m, n; 
+	double value; // m = nbre de lignes et n = nbre de colonnes
+	double[][] matrice;
 	private boolean inverseExiste = false;
 	MatriceInverse inverse;
 	Scanner scan = new Scanner(System.in);
@@ -14,12 +19,15 @@ public class Matrice {
 		
 		this.m = m;
 		this.n = n;
-		matrice = new int[m][n];
+		matrice = new double[m][n];
+		
+		RealMatrix matriX = MatrixUtils.createRealMatrix(matrice);
+		
 		if (m==n) {
 			inverse = new MatriceInverse(m,n);
 			inverseExiste = true;
 		} else {
-			System.out.println("La matrice n'est pas carrée ! ");
+			System.out.println("La matrice n'est pas carrï¿½e ! ");
 		}
 		//inverse = new int[m][n];
 		
@@ -42,24 +50,17 @@ public class Matrice {
 	}
 	
 public void multiplierParMatrice(Matrice matrice2) {
-	int v =0;
-		Matrice matriceMultipliee = new Matrice(this.m,matrice2.n);
-		for (int i=0; i<m; i++) {
-			for (int j=0; j<matrice2.n; j++) {
-				
-				for (int x=0;x<n;x++) {
-					v+=matrice[i][x]*matrice2.matrice[x][j];
-				}
-				
-				matriceMultipliee.matrice[i][j]=v;
-				v=0;
-			}
-		}
+
 		System.out.println("Matrice de base : ");
 		this.showValues();
+		RealMatrix matriX = MatrixUtils.createRealMatrix(this.matrice);
 		System.out.println("Multipliï¿½e par : ");
 		matrice2.showValues();
-		System.out.println("Correspond à : ");
+		RealMatrix matriX2 = MatrixUtils.createRealMatrix(matrice2.matrice);
+		System.out.println("Correspond ï¿½ : ");
+		RealMatrix matriXMultipliee = matriX.multiply(matriX2);
+		Matrice matriceMultipliee = new Matrice(matriXMultipliee.getRowDimension(), matriXMultipliee.getColumnDimension());
+		matriceMultipliee.matrice = matriXMultipliee.getData();
 		matriceMultipliee.showValues();
 		
 	}
@@ -86,6 +87,8 @@ public void multiplierParMatrice(Matrice matrice2) {
 			}
 		}
 		
+		RealMatrix matriX = MatrixUtils.createRealMatrix(matrice);
+		
 		this.showValues();
 		
 	}
@@ -93,9 +96,9 @@ public void multiplierParMatrice(Matrice matrice2) {
 	public void showValues() {
 		 //afficher le contenu du tableau matrice
 
-		for (int sousTab[] : matrice) { 
+		for (double sousTab[] : matrice) { 
 			System.out.print("| ");
-			for (int value : sousTab) {
+			for (double value : sousTab) {
 				System.out.print(value+" ");
 			}
 			System.out.println("|");
@@ -107,18 +110,11 @@ public void multiplierParMatrice(Matrice matrice2) {
 	
 public void calculerInverse () {
 		
-		//for (int sousTab[] : inverse) {
-			
-		//}
-		
-		for (int sousTab[] : matrice) { 
-			System.out.print("|");
-			for (int value : sousTab) {
-				System.out.print(value);
-			}
-			System.out.println("|");
-		}	
-		
+		RealMatrix matriX = MatrixUtils.createRealMatrix(matrice);
+		RealMatrix matriXInverse = new LUDecomposition(matriX).getSolver().getInverse();
+		Matrice matriceInverse = new Matrice(matriXInverse.getRowDimension(), matriXInverse.getColumnDimension());
+		matriceInverse.matrice = matriXInverse.getData();
+		matriceInverse.showValues();
 	}
 
 

@@ -2,6 +2,7 @@ package test;
 
 import java.util.Scanner;
 
+import org.apache.commons.math3.fraction.Fraction;
 import org.apache.commons.math3.linear.LUDecomposition;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
@@ -19,7 +20,6 @@ public class Matrice {
 		this.n = n;
 		matrice = new double[m][n];
 		
-		RealMatrix matriX = MatrixUtils.createRealMatrix(matrice);
 		
 		
 	}
@@ -91,8 +91,8 @@ public void multiplierParMatrice(Matrice matrice2) {
 		for (double sousTab[] : matrice) { 
 			System.out.print("| ");
 			for (double value : sousTab) {
-				value = arrondi(value,1);
-				System.out.print(value+" ");
+				Fraction f = new Fraction(value);
+				System.out.print(f.toString()+"  ");
 			}
 			System.out.println("|");
 		}	
@@ -110,10 +110,6 @@ public void calculerInverse () {
 		matriceInverse.showValues();
 	}
 
-private static double arrondi (double valeur, int precision) {
-    int scale = (int) Math.pow(10, precision);
-    return (double) Math.round(valeur * scale) / scale;
-}
 
 
 

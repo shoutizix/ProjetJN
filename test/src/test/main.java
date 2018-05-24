@@ -82,5 +82,7 @@ public class main {
 		lol.showStandardForm();
 		**/
 	}
+	
+
 
 }

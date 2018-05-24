@@ -12,7 +12,6 @@ public class Matrice {
 	double value; // m = nbre de lignes et n = nbre de colonnes
 	double[][] matrice;
 	private boolean inverseExiste = false;
-	MatriceInverse inverse;
 	Scanner scan = new Scanner(System.in);
 	
 	public Matrice (int m, int n) {
@@ -23,13 +22,6 @@ public class Matrice {
 		
 		RealMatrix matriX = MatrixUtils.createRealMatrix(matrice);
 		
-		if (m==n) {
-			inverse = new MatriceInverse(m,n);
-			inverseExiste = true;
-		} else {
-			System.out.println("La matrice n'est pas carr�e ! ");
-		}
-		//inverse = new int[m][n];
 		
 	}
 	
@@ -42,6 +34,7 @@ public class Matrice {
 				matriceMultipliee.matrice[i][j] = value;
 			}
 		}
+
 		System.out.println("Matrice de base : ");
 		this.showValues();
 		System.out.println("Multipli�e par : "+multiplicateur);
@@ -99,6 +92,7 @@ public void multiplierParMatrice(Matrice matrice2) {
 		for (double sousTab[] : matrice) { 
 			System.out.print("| ");
 			for (double value : sousTab) {
+				value = arrondi(value,1);
 				System.out.print(value+" ");
 			}
 			System.out.println("|");
@@ -117,18 +111,10 @@ public void calculerInverse () {
 		matriceInverse.showValues();
 	}
 
-
-public void showInverse() {
-	
-	//afficher le contenu de la matrice inverse
-	if (inverseExiste) {
-		inverse.showValues();
-	} else {
-		System.out.println("La matrice n'est pas carr�e ! ");
-	}
-	
-	
-	}
+private static double arrondi (double valeur, int precision) {
+    int scale = (int) Math.pow(10, precision);
+    return (double) Math.round(valeur * scale) / scale;
+}
 
 
 

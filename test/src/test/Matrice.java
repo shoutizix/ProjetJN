@@ -79,8 +79,6 @@ public void multiplierParMatrice(Matrice matrice2) {
 			}
 		}
 		
-		RealMatrix matriX = MatrixUtils.createRealMatrix(matrice);
-		
 		this.showValues();
 		
 	}

@@ -21,7 +21,6 @@ public class Matrice {
 		matrice = new double[m][n];
 		
 		
-		
 	}
 	
 	public void multiplierParInt(int multiplicateur) {
@@ -83,18 +82,21 @@ public void multiplierParMatrice(Matrice matrice2) {
 		
 	}
 	
-	public void showValues() {
+	public String showValues() {
 		 //afficher le contenu du tableau matrice
-
+		String texte = "";
 		for (double sousTab[] : matrice) { 
 			System.out.print("| ");
+			texte += "| ";
 			for (double value : sousTab) {
 				Fraction f = new Fraction(value);
 				System.out.print(f.toString()+"  ");
+				texte += f.toString()+"  ";
 			}
 			System.out.println("|");
+			texte += "| \n\n";
 		}	
-		
+		return texte;
 	}
 	
 		

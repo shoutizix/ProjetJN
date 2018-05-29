@@ -14,6 +14,9 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
+import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
 
 public class TestSwingMatrice extends JFrame {
 
@@ -22,9 +25,11 @@ public class TestSwingMatrice extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JTable table;
+	private JTable table_1;
 
 	/**
-	 * Launch the application.
+	 * Lance l'application !
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -38,8 +43,6 @@ public class TestSwingMatrice extends JFrame {
 			}
 		});
 		
-		int nbreligne, nbrecolonne;
-		//Matrice matrice = new Matrice(nbreligne, nbrecolonne);
 	}
 
 	/**
@@ -57,6 +60,7 @@ public class TestSwingMatrice extends JFrame {
 		contentPane.add(lblCombienDeLignes);
 		
 		textField = new JTextField();
+		textField.setText("3");
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
@@ -64,27 +68,45 @@ public class TestSwingMatrice extends JFrame {
 		contentPane.add(lblCombienDeColonnes);
 		
 		textField_1 = new JTextField();
+		textField_1.setText("3");
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblVoulezvousMettreDes = new JLabel("Voulez-vous mettre des valeuts?");
+		JLabel lblVoulezvousMettreDes = new JLabel("Voulez-vous mettre des valeurs?");
 		contentPane.add(lblVoulezvousMettreDes);
-		
+
 		JButton btnOui = new JButton("Oui");
 		btnOui.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JButton source = (JButton)e.getSource();
-				if (source == btnOui) {
-					//matrice.setValue();
-				} else {
-					//matrice.valeurParDefaut();
-		}
+				if (e.getSource() == btnOui) {
+					String nbreLS = textField.getText();
+					int nbreL = Integer.parseInt(nbreLS);
+					String nbreCS = textField_1.getText();
+					int nbreC = Integer.parseInt(nbreCS);
+					Matrice matrice = new Matrice(nbreL, nbreC);
+					matrice.setValue();
+					
+				} 
 			}
 		});
 		contentPane.add(btnOui);
 		
 		JButton btnNon = new JButton("Non");
+		btnNon.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nbreLS = textField.getText();
+				int nbreL = Integer.parseInt(nbreLS);
+				String nbreCS = textField_1.getText();
+				int nbreC = Integer.parseInt(nbreCS);
+				Matrice matrice = new Matrice(nbreL, nbreC);
+				matrice.valeurParDefaut();
+				JLabel lblNewLabel = new JLabel(matrice.showValues());
+				contentPane.add(lblNewLabel);				
+			}
+		});
 		contentPane.add(btnNon);
+		
+		
 		
 		JLabel lblVoulezvousMultiplierLa = new JLabel("Voulez-vous multiplier la matrice par une autre matrice ?");
 		contentPane.add(lblVoulezvousMultiplierLa);
@@ -135,6 +157,9 @@ public class TestSwingMatrice extends JFrame {
 		
 		JTextArea textArea_2 = new JTextArea();
 		contentPane.add(textArea_2);
+
+		
+		
 	}
 
 }

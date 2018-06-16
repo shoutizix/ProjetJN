@@ -1,5 +1,6 @@
 package test;
 
+import java.util.Random;
 import java.util.Scanner;
 
 import org.apache.commons.math3.fraction.Fraction;
@@ -72,20 +73,35 @@ public void multiplierParMatrice(Matrice matrice2) {
 		}
 	}
 	
-	
-	public void setValue() {
-		System.out.println("Mettez les valeurs par lignes ! ");
+	public void randomValues() {
 		for (int i=0; i<m; i++) {
 			for (int j=0; j<n; j++) {
-				System.out.print("InsÃ©rez un chiffre : ");
-				value = scan.nextInt();
-				matrice[i][j] = value;
+				Random random = new Random();
+				matrice[i][j] = random.nextInt(9);			
+			}
+		}
+	}
+	
+	public void setValue(Matrice matriceM) {
+		System.out.println("Mettez les valeurs par lignes ! ");
+		
+		for (int i=0; i<m; i++) {
+			for (int j=0; j<n; j++) {
+				System.out.print("Insérez un chiffre à la position ("+i+";"+j+") : ");
+				SaisieWindow saisie =  new SaisieWindow(i, j, matriceM);
+				saisie.NewScreen();
+				//value = scan.nextInt();
+				//matriceM.matrice[i][j] = value;
 				
 			}
 		}
 		
 		this.showValues();
 		
+	}
+	
+	public void setValueAt(int i, int j, int value) {
+		matrice[i][j] = value;
 	}
 	
 	public String showValues() {
@@ -96,7 +112,7 @@ public void multiplierParMatrice(Matrice matrice2) {
 			texte += "| ";
 			for (double value : sousTab) {
 				Fraction f = new Fraction(value);
-				System.out.print(f.toString()+"  ");
+				System.out.print(f.toString()+" ");
 				texte += f.toString()+"  ";
 			}
 			System.out.println("|");

@@ -9,8 +9,8 @@ import org.apache.commons.math3.linear.RealMatrix;
 
 public class Matrice {
 	
-	int m, n; 
-	double value; // m = nbre de lignes et n = nbre de colonnes
+	int m, n; // m = nbre de lignes et n = nbre de colonnes
+	double value; 
 	double[][] matrice;
 	Scanner scan = new Scanner(System.in);
 	
@@ -23,7 +23,13 @@ public class Matrice {
 		
 	}
 	
-	public void multiplierParInt(int multiplicateur) {
+	public void changerDimension(int m,int n) {
+		this.m = m;
+		this.n= n;
+		matrice = new double[m][n];
+	}
+	
+	public String multiplierParInt(int multiplicateur) {
 		
 		Matrice matriceMultipliee = new Matrice(this.m,this.n);
 		for (int i=0; i<m; i++) {
@@ -36,7 +42,7 @@ public class Matrice {
 		System.out.println("Matrice de base : ");
 		this.showValues();
 		System.out.println("Multipli�e par : "+multiplicateur);
-		matriceMultipliee.showValues();
+		return matriceMultipliee.showValues();
 		
 	}
 	
@@ -94,20 +100,20 @@ public void multiplierParMatrice(Matrice matrice2) {
 				texte += f.toString()+"  ";
 			}
 			System.out.println("|");
-			texte += "| \n\n";
+			texte += "| \n";
 		}	
 		return texte;
 	}
 	
 		
 	
-public void calculerInverse () {
+public String calculerInverse () {
 		
 		RealMatrix matriX = MatrixUtils.createRealMatrix(matrice);
 		RealMatrix matriXInverse = new LUDecomposition(matriX).getSolver().getInverse();
 		Matrice matriceInverse = new Matrice(matriXInverse.getRowDimension(), matriXInverse.getColumnDimension());
 		matriceInverse.matrice = matriXInverse.getData();
-		matriceInverse.showValues();
+		return matriceInverse.showValues();
 	}
 
 

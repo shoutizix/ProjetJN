@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JTabbedPane;
 
 public class TestSwingMatrice extends JFrame {
 
@@ -25,8 +26,6 @@ public class TestSwingMatrice extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-	private JTable table;
-	private JTable table_1;
 
 	/**
 	 * Lance l'application !
@@ -48,6 +47,8 @@ public class TestSwingMatrice extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	Matrice matrice = new Matrice(4,4);
+	
 	public TestSwingMatrice() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 492, 582);
@@ -60,7 +61,7 @@ public class TestSwingMatrice extends JFrame {
 		contentPane.add(lblCombienDeLignes);
 		
 		textField = new JTextField();
-		textField.setText("3");
+		textField.setText("4");
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
@@ -68,7 +69,7 @@ public class TestSwingMatrice extends JFrame {
 		contentPane.add(lblCombienDeColonnes);
 		
 		textField_1 = new JTextField();
-		textField_1.setText("3");
+		textField_1.setText("4");
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -83,7 +84,7 @@ public class TestSwingMatrice extends JFrame {
 					int nbreL = Integer.parseInt(nbreLS);
 					String nbreCS = textField_1.getText();
 					int nbreC = Integer.parseInt(nbreCS);
-					Matrice matrice = new Matrice(nbreL, nbreC);
+					matrice.changerDimension(nbreL, nbreC);
 					matrice.setValue();
 					
 				} 
@@ -93,16 +94,18 @@ public class TestSwingMatrice extends JFrame {
 		
 		JButton btnNon = new JButton("Non");
 		btnNon.addActionListener(new ActionListener() {
+			JTextArea Jmatrice = new JTextArea();
 			public void actionPerformed(ActionEvent e) {
 				String nbreLS = textField.getText();
 				int nbreL = Integer.parseInt(nbreLS);
 				String nbreCS = textField_1.getText();
 				int nbreC = Integer.parseInt(nbreCS);
-				Matrice matrice = new Matrice(nbreL, nbreC);
-				matrice.valeurParDefaut();
-				JLabel lblNewLabel = new JLabel(matrice.showValues());
-				contentPane.add(lblNewLabel);				
-			}
+				matrice.changerDimension(nbreL, nbreC);
+				matrice.valeurParDefaut(); 
+				Jmatrice.setText(matrice.showValues());
+				contentPane.add(Jmatrice);
+				revalidate();
+			}						
 		});
 		contentPane.add(btnNon);
 		
@@ -113,9 +116,6 @@ public class TestSwingMatrice extends JFrame {
 		
 		JButton btnOui_1 = new JButton("Oui");
 		contentPane.add(btnOui_1);
-		
-		JButton btnNon_1 = new JButton("Non");
-		contentPane.add(btnNon_1);
 		
 		JLabel lblCombienDeLignes_1 = new JLabel("Combien de ligne(s) y a-t-il dans la matrice ?");
 		contentPane.add(lblCombienDeLignes_1);
@@ -137,11 +137,20 @@ public class TestSwingMatrice extends JFrame {
 		JLabel lblVoulezvousVoirLa = new JLabel("Voulez-vous voir la matrice inverse ?");
 		contentPane.add(lblVoulezvousVoirLa);
 		
-		JButton btnOui_2 = new JButton("Oui");
-		contentPane.add(btnOui_2);
+		JButton btnOui_inverse = new JButton("Oui");
+		btnOui_inverse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() == btnOui_inverse) {
+					JTextArea JmatriceInverse = new JTextArea(matrice.calculerInverse());
+					contentPane.add(JmatriceInverse);
+					revalidate();
+				} 
+			}
+		});
+		contentPane.add(btnOui_inverse);
 		
-		JButton btnNon_2 = new JButton("Non");
-		contentPane.add(btnNon_2);
+		JButton btnNon_inverse = new JButton("Non");
+		contentPane.add(btnNon_inverse);
 		
 		JTextArea textArea_1 = new JTextArea();
 		contentPane.add(textArea_1);
@@ -149,14 +158,21 @@ public class TestSwingMatrice extends JFrame {
 		JLabel lblVoulezvousMultiplierLa_1 = new JLabel("Voulez-vous multiplier la matrice par un int ? (O/N)");
 		contentPane.add(lblVoulezvousMultiplierLa_1);
 		
-		JButton btnOui_3 = new JButton("Oui");
-		contentPane.add(btnOui_3);
+		JButton btnOui_Int = new JButton("Oui");
+		btnOui_Int.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() == btnOui_Int) {
+					JTextArea JmatriceInt = new JTextArea(matrice.multiplierParInt(3));
+					contentPane.add(JmatriceInt);
+					revalidate();
+				} 
+			}
+		});
+		contentPane.add(btnOui_Int);
 		
-		JButton btnNon_3 = new JButton("Non");
-		contentPane.add(btnNon_3);
-		
-		JTextArea textArea_2 = new JTextArea();
+		JTextArea textArea_2 = new JTextArea(3,3); // Crée un JtextArea vide de 3 lignes et 3 colonnes 
 		contentPane.add(textArea_2);
+
 
 		
 		

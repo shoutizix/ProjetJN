@@ -130,7 +130,7 @@ public class MainWindow {
 				String nbreCS = textField_Colonne.getText();
 				int nbreC = Integer.parseInt(nbreCS);
 				matrice.changerDimension(nbreL, nbreC);
-				matrice.setValue(matrice);
+				matrice.setValue();
 				textArea_Matrice.setText(matrice.showValues());
 				frame.revalidate();
 			}

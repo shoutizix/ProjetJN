@@ -82,17 +82,13 @@ public void multiplierParMatrice(Matrice matrice2) {
 		}
 	}
 	
-	public void setValue(Matrice matriceM) {
+	public void setValue() {
 		System.out.println("Mettez les valeurs par lignes ! ");
-		
 		for (int i=0; i<m; i++) {
 			for (int j=0; j<n; j++) {
 				System.out.print("Insérez un chiffre à la position ("+i+";"+j+") : ");
-				SaisieWindow saisie =  new SaisieWindow(i, j, matriceM);
-				saisie.NewScreen();
 				//value = scan.nextInt();
 				//matriceM.matrice[i][j] = value;
-				
 			}
 		}
 		
@@ -113,7 +109,7 @@ public void multiplierParMatrice(Matrice matrice2) {
 			for (double value : sousTab) {
 				Fraction f = new Fraction(value);
 				System.out.print(f.toString()+" ");
-				texte += f.toString()+"  ";
+				texte += f.toString()+" ";
 			}
 			System.out.println("|");
 			texte += "| \n";

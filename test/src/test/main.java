@@ -11,14 +11,14 @@ public class main {
 	
 	public static void main(String[] args) {
 		
-/**
+
 		System.out.println("Combien y a-t-il de x ?");
 		int nbreX = scan.nextInt();
 		System.out.println("Combien y a-t-il de contraintes ?");
 		int nbreContraintes = scan.nextInt();
 		AlgoSimplex lol = new AlgoSimplex(nbreContraintes, nbreX);
 		lol.showStandardForm();
-		**/
+		
 	}
 	
 

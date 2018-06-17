@@ -52,6 +52,15 @@ public class AlgoSimplex {
 		
 	}
 	
-	
+	public int premierDantzig() {
+		int position = 0;
+		for (int i=0; i<nbreX; i++) {
+			if (X[0][i]<0) {
+				position = i;
+			}
+			
+		}
+		return position;
+	}
 	
 }

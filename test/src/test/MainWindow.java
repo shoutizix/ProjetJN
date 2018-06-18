@@ -1,5 +1,7 @@
 package test;
 
+import java.awt.Color;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,6 +10,9 @@ import javax.swing.JTextField;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
@@ -31,6 +36,8 @@ public class MainWindow {
 				try {
 					MainWindow window = new MainWindow();
 					window.frame.setVisible(true);
+					window.frame.setTitle("Algorithme du Simplexe en Java");
+					//window.frame.setBackground(Color.ORANGE);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -63,6 +70,7 @@ public class MainWindow {
 		JPanel panel_M = new JPanel();
 		tabbedPane.addTab("Calcul de matrice", null, panel_M, null);
 		panel_M.setLayout(null);
+		panel_M.setBackground(Color.CYAN);
 		
 		JTextArea textArea_Matrice = new JTextArea();
 		textArea_Matrice.setFont(new Font("Monospaced", Font.PLAIN, 13));
@@ -199,5 +207,7 @@ public class MainWindow {
 		
 		JPanel panel_S = new JPanel();
 		tabbedPane.addTab("Algorithme du Simplexe", null, panel_S, null);
+		//panel_S.setBackground(new ImageIcon("220px-Simplex-method-3-dimensions"));
+		//panel_S.setBackground(new JLabel(new ImageIcon("resources/taverna.jpg")));
 	}
 }

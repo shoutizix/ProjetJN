@@ -109,7 +109,11 @@ public String multiplierParMatrice(Matrice matrice2) {
 			for (double value : sousTab) {
 				Fraction f = new Fraction(value);
 				System.out.print(f.toString()+" ");
-				texte += f.toString()+" ";
+				if (f.getDenominator()==1) {
+					texte += f.toString()+" ";
+				} else {
+					texte += f.getNumerator()+"/"+f.getDenominator()+" ";
+				}
 			}
 			System.out.println("|");
 			texte += "| \n";

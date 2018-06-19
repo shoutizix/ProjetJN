@@ -9,8 +9,6 @@ import javax.swing.JTable;
 import javax.swing.JSpinner;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
-
 import java.awt.Font;
 import java.util.Vector;
 

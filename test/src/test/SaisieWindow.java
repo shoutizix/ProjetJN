@@ -9,7 +9,6 @@ import javax.swing.JTable;
 import javax.swing.JSpinner;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 
 import java.awt.Font;
 import java.util.Vector;
@@ -25,7 +24,6 @@ public class SaisieWindow {
 
 	JFrame frame;
 	private JTable table;
-	private MainWindow mainWindow;
 	private DefaultTableModel dtm = new DefaultTableModel(3,3);
 
 	/**
@@ -145,8 +143,5 @@ public class SaisieWindow {
 		btn_Terminer.setBounds(165, 193, 89, 23);
 		panel.add(btn_Terminer);
 	}
-	
-	public void setMainWindow(MainWindow mw) {
-		this.mainWindow = mw;
-	}
+
 }

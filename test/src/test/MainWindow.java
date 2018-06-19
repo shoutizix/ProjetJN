@@ -16,7 +16,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
-import java.util.Random;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 
@@ -134,10 +133,6 @@ public class MainWindow {
 		JButton btn_SetValues = new JButton("Valeurs personnalis\u00E9es");
 		btn_SetValues.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String nbreLS = textField_Ligne.getText();
-				int nbreL = Integer.parseInt(nbreLS);
-				String nbreCS = textField_Colonne.getText();
-				int nbreC = Integer.parseInt(nbreCS);
 				SaisieWindow sw = new SaisieWindow();
 				sw.frame.setVisible(true);
 				frame.dispose();

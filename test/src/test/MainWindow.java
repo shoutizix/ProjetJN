@@ -22,10 +22,13 @@ import javax.swing.JTextArea;
 
 public class MainWindow {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTextField textField_Colonne;
 	private JTextField textField_Ligne;
 	private JTextField textField_Chiffre;
+	public Matrice matrice = new Matrice(3,3);
+	JTextArea textArea_Matrice = new JTextArea();
+	JTextArea textArea_Matrice2 = new JTextArea();
 
 	/**
 	 * Launch the application.
@@ -61,7 +64,6 @@ public class MainWindow {
 		frame.setBounds(100, 100, 538, 510);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		Matrice matrice = new Matrice(3,3);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(0, 0, 522, 471);
@@ -72,7 +74,6 @@ public class MainWindow {
 		panel_M.setLayout(null);
 		panel_M.setBackground(Color.CYAN);
 		
-		JTextArea textArea_Matrice = new JTextArea();
 		textArea_Matrice.setFont(new Font("Monospaced", Font.PLAIN, 13));
 		textArea_Matrice.setEditable(false);
 		textArea_Matrice.setBounds(95, 28, 147, 135);
@@ -84,7 +85,7 @@ public class MainWindow {
 		label_Egal.setBounds(252, 87, 43, 20);
 		panel_M.add(label_Egal);
 		
-		JTextArea textArea_Matrice2 = new JTextArea();
+		
 		textArea_Matrice2.setFont(new Font("Monospaced", Font.PLAIN, 12));
 		textArea_Matrice2.setEditable(false);
 		textArea_Matrice2.setBounds(306, 31, 183, 135);
@@ -137,10 +138,9 @@ public class MainWindow {
 				int nbreL = Integer.parseInt(nbreLS);
 				String nbreCS = textField_Colonne.getText();
 				int nbreC = Integer.parseInt(nbreCS);
-				matrice.changerDimension(nbreL, nbreC);
-				matrice.setValue();
-				textArea_Matrice.setText(matrice.showValues());
-				frame.revalidate();
+				SaisieWindow sw = new SaisieWindow();
+				sw.frame.setVisible(true);
+				frame.dispose();
 			}
 		});
 		
@@ -178,6 +178,13 @@ public class MainWindow {
 		panel_M.add(btn_CalculerInverse);
 		
 		JButton btn_MuliplierMatrice = new JButton("Muliplier avec une autre matrice");
+		btn_MuliplierMatrice.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SaisieWindow2 sw2 = new SaisieWindow2(matrice);
+				sw2.frame.setVisible(true);
+				frame.dispose();
+			}
+		});
 		btn_MuliplierMatrice.setBounds(226, 331, 228, 23);
 		panel_M.add(btn_MuliplierMatrice);
 		

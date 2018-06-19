@@ -47,7 +47,7 @@ public class Matrice {
 		
 	}
 	
-public void multiplierParMatrice(Matrice matrice2) {
+public String multiplierParMatrice(Matrice matrice2) {
 
 		System.out.println("Matrice de base : ");
 		this.showValues();
@@ -59,8 +59,8 @@ public void multiplierParMatrice(Matrice matrice2) {
 		RealMatrix matriXMultipliee = matriX.multiply(matriX2);
 		Matrice matriceMultipliee = new Matrice(matriXMultipliee.getRowDimension(), matriXMultipliee.getColumnDimension());
 		matriceMultipliee.matrice = matriXMultipliee.getData();
-		matriceMultipliee.showValues();
 		
+		return matriceMultipliee.showValues();
 	}
 	
 		

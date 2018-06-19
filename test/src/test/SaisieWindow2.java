@@ -21,11 +21,10 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class SaisieWindow {
+public class SaisieWindow2 {
 
 	JFrame frame;
 	private JTable table;
-	private MainWindow mainWindow;
 	private DefaultTableModel dtm = new DefaultTableModel(3,3);
 
 	/**
@@ -47,15 +46,15 @@ public class SaisieWindow {
 	/**
 	 * Create the application.
 	 */
-	public SaisieWindow() {
-		initialize();
-	}
 	
+	public SaisieWindow2(Matrice m) {
+		initialize(m);
+	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(Matrice m) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -123,21 +122,21 @@ public class SaisieWindow {
 		btn_Terminer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				MainWindow mw = new MainWindow();
-				mw.matrice.changerDimension(dtm.getRowCount(), dtm.getColumnCount());
+				Matrice matriceM = new Matrice(dtm.getRowCount(), dtm.getColumnCount());
 				for (int i=0; i<dtm.getRowCount(); i++) {
 					for (int j=0; j<dtm.getColumnCount(); j++) {
 						Object o = dtm.getValueAt(i, j);
 						if (o==null) {
-							mw.matrice.setValueAt(i, j, 0);
+							matriceM.setValueAt(i, j, 0);
 						} else {
 							String valueS = o.toString();
 							int value = Integer.parseInt(valueS.trim());
-							mw.matrice.setValueAt(i, j, value);
+							matriceM.setValueAt(i, j, value);
 						}
 					}
 				}
-				mw.matrice.showValues();
-				mw.textArea_Matrice.setText(mw.matrice.showValues());
+				matriceM.showValues();
+				mw.textArea_Matrice2.setText(m.multiplierParMatrice(matriceM));
 				mw.frame.setVisible(true);
 				frame.dispose();
 			}
@@ -146,7 +145,4 @@ public class SaisieWindow {
 		panel.add(btn_Terminer);
 	}
 	
-	public void setMainWindow(MainWindow mw) {
-		this.mainWindow = mw;
-	}
 }

@@ -283,8 +283,8 @@ public class MainWindow {
 				}
 				
 				AlgoSimplex alg = new AlgoSimplex(tableau);
-				textArea_DeuxiemeCD.setText(String.valueOf(table.getValueAt(0, alg.deuxiemeCDantzig())));
-				textArea_PremierCD.setText(String.valueOf(tableau[alg.premierCDantzig(alg.deuxiemeCDantzig())][alg.deuxiemeCDantzig()]));
+				textArea_DeuxiemeCD.setText(String.valueOf(alg.deuxiemeCDantzig()));
+				textArea_PremierCD.setText(String.valueOf(alg.premierCDantzig(alg.deuxiemeCDantzigPos())));
 				frame.revalidate();
 				
 				

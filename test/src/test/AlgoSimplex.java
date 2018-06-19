@@ -64,14 +64,19 @@ public class AlgoSimplex {
 	public int deuxiemeCDantzig() {
 		int position = 0;
 		for (int i=1; i<=nbreX; i++) {
-			if (X[0][i]<0) {
-				if(position!=0) {
-					if (X[0][i]<X[0][position]) {
-						position = i;
-					}
-				}
+			if (X[0][i]<X[0][position]) {
 				position = i;
-				
+			}
+			
+		}
+		return X[0][position];
+	}
+	
+	public int deuxiemeCDantzigPos() {
+		int position = 0;
+		for (int i=1; i<=nbreX; i++) {
+			if (X[0][i]<X[0][position]) {
+				position = i;
 			}
 			
 		}
@@ -93,7 +98,7 @@ public class AlgoSimplex {
 			}
 			
 		}
-		return position;
+		return X[position][colonne];
 	}
 	
 }

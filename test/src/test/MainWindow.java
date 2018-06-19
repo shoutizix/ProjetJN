@@ -18,6 +18,9 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
 
 public class MainWindow {
 
@@ -28,6 +31,7 @@ public class MainWindow {
 	public Matrice matrice = new Matrice(3,3);
 	JTextArea textArea_Matrice = new JTextArea();
 	JTextArea textArea_Matrice2 = new JTextArea();
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -209,6 +213,91 @@ public class MainWindow {
 		
 		JPanel panel_S = new JPanel();
 		tabbedPane.addTab("Algorithme du Simplexe", null, panel_S, null);
+		panel_S.setLayout(null);
+		
+		JLabel lblPremierCritreDe = new JLabel("Premier crit\u00E8re de Dantzig :");
+		lblPremierCritreDe.setBounds(107, 101, 155, 23);
+		panel_S.add(lblPremierCritreDe);
+		
+		JLabel lblDeuximeCritreDe = new JLabel("Deuxi\u00E8me crit\u00E8re de Dantzig :");
+		lblDeuximeCritreDe.setBounds(107, 55, 177, 23);
+		panel_S.add(lblDeuximeCritreDe);
+				
+		JTextArea textArea_DeuxiemeCD = new JTextArea();
+		textArea_DeuxiemeCD.setBounds(294, 54, 33, 23);
+		panel_S.add(textArea_DeuxiemeCD);
+		
+		JTextArea textArea_PremierCD = new JTextArea();
+		textArea_PremierCD.setBounds(272, 100, 33, 23);
+		panel_S.add(textArea_PremierCD);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(107, 164, 323, 82);
+		panel_S.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"Z =", null, null, null},
+				{"x3 =", null, null, null},
+				{"x4 =", null, null, null},
+			},
+			new String[] {
+				"", "", "-x1", "-x2"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Object.class, Integer.class, Integer.class, Integer.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+			boolean[] columnEditables = new boolean[] {
+				false, true, true, true
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		
+		JButton btn_MontrerLePivot = new JButton("Montrer le pivot");
+		btn_MontrerLePivot.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+
+				int[][] tableau = new int[dtm.getRowCount()][dtm.getColumnCount()-1];
+				
+				for (int i=0; i<dtm.getRowCount(); i++) {
+					for (int j=1; j<dtm.getColumnCount(); j++) {
+						Object o = dtm.getValueAt(i, j);
+						if (o==null) {
+							table.setValueAt(0, i, j);
+							tableau[i][j-1] = 0;
+						} else {
+							String valueS = o.toString();
+							int value = Integer.parseInt(valueS.trim());
+							tableau[i][j-1] = value;
+						}
+					}
+				}
+				
+				AlgoSimplex alg = new AlgoSimplex(tableau);
+				textArea_DeuxiemeCD.setText(String.valueOf(table.getValueAt(0, alg.deuxiemeCDantzig())));
+				textArea_PremierCD.setText(String.valueOf(tableau[alg.premierCDantzig(alg.deuxiemeCDantzig())][alg.deuxiemeCDantzig()]));
+				frame.revalidate();
+				
+				
+				
+			}
+		});
+		btn_MontrerLePivot.setBounds(77, 282, 131, 23);
+		panel_S.add(btn_MontrerLePivot);
+		
+		JButton btn_Pivoter = new JButton("Pivoter");
+		btn_Pivoter.setBounds(312, 282, 89, 23);
+		panel_S.add(btn_Pivoter);
+				
 		//panel_S.setBackground(new ImageIcon("220px-Simplex-method-3-dimensions"));
 		//panel_S.setBackground(new JLabel(new ImageIcon("resources/taverna.jpg")));
 	}

@@ -247,12 +247,6 @@ public class MainWindow {
 				"", "", "-x1", "-x2"
 			}
 		) {
-			Class[] columnTypes = new Class[] {
-				Object.class, Integer.class, Integer.class, Integer.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
 			boolean[] columnEditables = new boolean[] {
 				false, true, true, true
 			};
@@ -266,7 +260,7 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent arg0) {
 				DefaultTableModel dtm = (DefaultTableModel) table.getModel();
 
-				int[][] tableau = new int[dtm.getRowCount()][dtm.getColumnCount()-1];
+				double[][] tableau = new double[dtm.getRowCount()][dtm.getColumnCount()-1];
 				
 				for (int i=0; i<dtm.getRowCount(); i++) {
 					for (int j=1; j<dtm.getColumnCount(); j++) {
@@ -276,17 +270,33 @@ public class MainWindow {
 							tableau[i][j-1] = 0;
 						} else {
 							String valueS = o.toString();
-							int value = Integer.parseInt(valueS.trim());
+							double value = Double.parseDouble(valueS.trim());
 							tableau[i][j-1] = value;
 						}
 					}
 				}
 				
 				AlgoSimplex alg = new AlgoSimplex(tableau);
-				textArea_DeuxiemeCD.setText(String.valueOf(alg.deuxiemeCDantzig()));
-				textArea_PremierCD.setText(String.valueOf(alg.premierCDantzig(alg.deuxiemeCDantzigPos())));
-				frame.revalidate();
-				
+				if (alg.deuxiemeCDantzigBool()==false) {
+					JLabel lbl_Max = new JLabel("Z est d\u00E9j\u00E0 maximis\u00E9 !");
+					lbl_Max.setFont(new Font("Tahoma", Font.BOLD, 13));
+					lbl_Max.setBounds(191, 338, 142, 23);
+					panel_S.add(lbl_Max);
+					frame.repaint();
+				} else if (alg.premierCDantzigBool(alg.deuxiemeCDantzigPos())==false) {
+					JLabel lbl_Max = new JLabel("Le probl\u00E8me est non born\u00E9 !");
+					lbl_Max.setFont(new Font("Tahoma", Font.BOLD, 13));
+					lbl_Max.setBounds(191, 338, 142, 23);
+					panel_S.add(lbl_Max);
+					textArea_DeuxiemeCD.setText("");
+					textArea_PremierCD.setText("");
+					frame.revalidate();
+					frame.repaint();
+				} else {
+					textArea_DeuxiemeCD.setText(String.valueOf(alg.deuxiemeCDantzig()));
+					textArea_PremierCD.setText(String.valueOf(alg.premierCDantzig(alg.deuxiemeCDantzigPos())));
+					frame.revalidate();
+				}
 				
 				
 			}
@@ -295,8 +305,60 @@ public class MainWindow {
 		panel_S.add(btn_MontrerLePivot);
 		
 		JButton btn_Pivoter = new JButton("Pivoter");
+		btn_Pivoter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+
+				double[][] tableau = new double[dtm.getRowCount()][dtm.getColumnCount()-1];
+				
+				for (int i=0; i<dtm.getRowCount(); i++) {
+					for (int j=1; j<dtm.getColumnCount(); j++) {
+						Object o = dtm.getValueAt(i, j);
+						if (o==null) {
+							table.setValueAt(0, i, j);
+							tableau[i][j-1] = 0;
+						} else {
+							String valueS = o.toString();
+							double value = Double.parseDouble(valueS.trim());
+							tableau[i][j-1] = value;
+						}
+					}
+				}
+				
+				AlgoSimplex alg = new AlgoSimplex(tableau);
+				if (alg.deuxiemeCDantzigBool()==false) {
+					JLabel lbl_Max = new JLabel("Z est d\u00E9j\u00E0 maximis\u00E9 !");
+					lbl_Max.setFont(new Font("Tahoma", Font.BOLD, 13));
+					lbl_Max.setBounds(191, 338, 142, 23);
+					panel_S.add(lbl_Max);
+					frame.repaint();
+				} else if (alg.premierCDantzigBool(alg.deuxiemeCDantzigPos())==false) {
+					JLabel lbl_Max = new JLabel("Le probl\u00E8me est non born\u00E9 !");
+					lbl_Max.setFont(new Font("Tahoma", Font.BOLD, 13));
+					lbl_Max.setBounds(191, 338, 142, 23);
+					panel_S.add(lbl_Max);
+					textArea_DeuxiemeCD.setText("");
+					textArea_PremierCD.setText("");
+					frame.revalidate();
+					frame.repaint();
+				} else {
+					alg.pivoter(alg.deuxiemeCDantzigPos(),alg.premierCDantzigPos(alg.deuxiemeCDantzigPos()));
+					for (int i=0; i<dtm.getRowCount(); i++) {
+						for (int j=1; j<dtm.getColumnCount(); j++) {
+							table.setValueAt(alg.getValueAt(i, j-1), i, j);
+						}
+					}
+					frame.revalidate();
+				}
+			}
+		});
 		btn_Pivoter.setBounds(312, 282, 89, 23);
 		panel_S.add(btn_Pivoter);
+		
+		JLabel lblMaximiserZ = new JLabel("Maximiser Z :");
+		lblMaximiserZ.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblMaximiserZ.setBounds(216, 139, 89, 14);
+		panel_S.add(lblMaximiserZ);	
 				
 		//panel_S.setBackground(new ImageIcon("220px-Simplex-method-3-dimensions"));
 		//panel_S.setBackground(new JLabel(new ImageIcon("resources/taverna.jpg")));

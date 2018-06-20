@@ -2,10 +2,12 @@ package test;
 
 import java.util.Scanner;
 
+import org.apache.commons.math3.fraction.Fraction;
+
 public class AlgoSimplex {
 	
 	Scanner scan = new Scanner(System.in);
-	int [][] X; // Dimension 0 = Z, 1 = Contrainte1, 2 = Contrainte2, etc...
+	double [][] X; // Dimension 0 = Z, 1 = Contrainte1, 2 = Contrainte2, etc...
 	int nbreContraintes;
 	int nbreX;
 	
@@ -13,7 +15,7 @@ public class AlgoSimplex {
 		
 		this.nbreContraintes = nbreContraintes;
 		this.nbreX = nbreX;
-		X = new int[nbreContraintes+1][nbreX+nbreContraintes+1]; 
+		X = new double[nbreContraintes+1][nbreX+nbreContraintes+1]; 
 		
 		for (int i=0; i<nbreX; i++) {
 			System.out.println("Que vaut x"+(i+1)+" dans Z ?");
@@ -31,7 +33,7 @@ public class AlgoSimplex {
 		
 	}
 	
-	public AlgoSimplex(int[][] tableau) {
+	public AlgoSimplex(double[][] tableau) {
 		
 		this.X = tableau;
 		this.nbreX = 2;
@@ -50,9 +52,9 @@ public class AlgoSimplex {
 			}
 		}
 		System.out.print("Z = ");
-		for (int sousTab[] : X) { 
+		for (double sousTab[] : X) { 
 			System.out.print("| ");
-			for (int value : sousTab) {
+			for (double value : sousTab) {
 				System.out.print(value+" ");
 			}
 			System.out.println("|");
@@ -61,7 +63,18 @@ public class AlgoSimplex {
 	}
 	
 	
-	public int deuxiemeCDantzig() {
+	public boolean deuxiemeCDantzigBool() {
+		boolean possible = false;
+		for (int i=1; i<=nbreX; i++) {
+			if (X[0][i]<0) {
+				possible = true;
+			}
+			
+		}
+		return possible;
+	}
+	
+	public double deuxiemeCDantzig() {
 		int position = 0;
 		for (int i=1; i<=nbreX; i++) {
 			if (X[0][i]<X[0][position]) {
@@ -73,21 +86,21 @@ public class AlgoSimplex {
 	}
 	
 	public int deuxiemeCDantzigPos() {
-		int position = 0;
+		int positionC = 0;
 		for (int i=1; i<=nbreX; i++) {
-			if (X[0][i]<X[0][position]) {
-				position = i;
+			if (X[0][i]<X[0][positionC]) {
+				positionC = i;
 			}
 			
 		}
-		return position;
+		return positionC;
 	}
 	
-	public int premierCDantzig(int colonne) {
+	public double premierCDantzig(int colonne) {
 		int position = 0;
 		for (int i=1; i<=nbreX; i++) {
 			if (X[i][colonne]>0) {
-				int v = X[i][0]/X[i][colonne];
+				double v = X[i][0]/X[i][colonne];
 				if(position!=0) {
 					if (v<X[position][0]/X[position][colonne]) {
 						position = i;
@@ -99,6 +112,78 @@ public class AlgoSimplex {
 			
 		}
 		return X[position][colonne];
+	}
+	
+	public boolean premierCDantzigBool(int colonne) {
+		boolean possible = false;
+		if (deuxiemeCDantzigBool()) {
+			for (int i=1; i<=nbreX; i++) {
+				if (X[i][colonne]>0) {
+					possible = true;
+				}
+			}
+		}
+		return possible;
+	}
+	
+	public int premierCDantzigPos(int colonne) {
+		int positionL = 0;
+		for (int i=1; i<=nbreX; i++) {
+			if (X[i][colonne]>0) {
+				double v = X[i][0]/X[i][colonne];
+				if(positionL!=0) {
+					if (v<X[positionL][0]/X[positionL][colonne]) {
+						positionL = i;
+					}
+				} else {
+				positionL = i;
+				}
+			}
+			
+		}
+		return positionL;
+	}
+	
+	public void pivoter(int c, int l) {
+		
+		//ligne du pivot
+		for (int i=0; i<=nbreX; i++) {
+			if (i==c) {
+								
+			} else {
+				X[l][i] = X[l][i]/X[l][c];
+			}
+			 
+		}
+		//reste des valeurs
+		for (int i=0; i<=nbreX; i++) {
+			for (int j=0; j<=nbreContraintes; j++) {
+				if (j==c||i==l) {
+					
+				} else {
+					X[i][j] = X[i][j]-(X[l][j]*X[i][c]);							
+				}
+			}
+		}
+		//colonne du pivot
+		for (int i=0; i<=nbreX; i++) {
+			if (i==l) {
+								
+			} else {
+				X[i][c] = -1*(X[i][c]/X[l][c]);
+			}
+			 
+		}
+		//pivot
+		X[l][c] = 1/X[l][c];
+				
+	}
+	
+	public String getValueAt(int l, int c) {
+		double value = X[l][c];
+		//Fraction f = new Fraction(value);
+		String texte = "" +value;
+		return texte;
 	}
 	
 }

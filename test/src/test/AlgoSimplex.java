@@ -87,14 +87,14 @@ public class AlgoSimplex {
 		int position = 0;
 		for (int i=1; i<=nbreX; i++) {
 			if (X[i][colonne]>0) {
-				double v = X[i][0]/X[i][colonne];
+				int v = X[i][0]/X[i][colonne];
 				if(position!=0) {
 					if (v<X[position][0]/X[position][colonne]) {
 						position = i;
 					}
-				}
+				} else {
 				position = i;
-				
+				}
 			}
 			
 		}

@@ -42,8 +42,6 @@ public class MainWindow {
 				try {
 					MainWindow window = new MainWindow();
 					window.frame.setVisible(true);
-					
-					//window.frame.setBackground(Color.ORANGE);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -361,8 +359,5 @@ public class MainWindow {
 		lblMaximiserZ.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblMaximiserZ.setBounds(216, 139, 89, 14);
 		panel_S.add(lblMaximiserZ);	
-				
-		//panel_S.setBackground(new ImageIcon("220px-Simplex-method-3-dimensions"));
-		//panel_S.setBackground(new JLabel(new ImageIcon("resources/taverna.jpg")));
 	}
 }

@@ -35,7 +35,6 @@ public class SaisieWindow2 {
 				try {
 					SaisieWindow window = new SaisieWindow();
 					window.frame.setVisible(true);
-					window.frame.setTitle("Fenêtre de saisie");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -59,6 +58,7 @@ public class SaisieWindow2 {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setTitle("Fenêtre de saisie");
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 434, 261);

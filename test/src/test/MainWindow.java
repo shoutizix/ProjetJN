@@ -42,7 +42,7 @@ public class MainWindow {
 				try {
 					MainWindow window = new MainWindow();
 					window.frame.setVisible(true);
-					window.frame.setTitle("Algorithme du Simplexe en Java");
+					
 					//window.frame.setBackground(Color.ORANGE);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,6 +67,7 @@ public class MainWindow {
 		frame.setBounds(100, 100, 538, 510);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setTitle("Algorithme du Simplexe en Java");
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(0, 0, 522, 471);

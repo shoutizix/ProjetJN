@@ -1,5 +1,6 @@
 package test;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -35,6 +36,7 @@ public class SaisieWindow {
 				try {
 					SaisieWindow window = new SaisieWindow();
 					window.frame.setVisible(true);
+					window.frame.setTitle("Fenêtre de saisie");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -63,6 +65,7 @@ public class SaisieWindow {
 		panel.setBounds(0, 0, 434, 261);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
+		panel.setBackground(Color.CYAN);
 		
 		JLabel lblNewLabel = new JLabel("Ins\u00E9rez les valeurs de la matrice !");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));

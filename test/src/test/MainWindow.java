@@ -214,6 +214,7 @@ public class MainWindow {
 		JPanel panel_S = new JPanel();
 		tabbedPane.addTab("Algorithme du Simplexe", null, panel_S, null);
 		panel_S.setLayout(null);
+		panel_S.setBackground(Color.CYAN);
 		
 		JLabel lblPremierCritreDe = new JLabel("Premier crit\u00E8re de Dantzig :");
 		lblPremierCritreDe.setBounds(107, 101, 155, 23);
